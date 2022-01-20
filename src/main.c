@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 		if (bytecode_pass && bytecode_exit) bf_err("Only 1 bytecode flag may be used at a time");
 		printf("bytecode instructions: ");
 		for (int i = 0; i < tokens->operations_size; i++) {
-			printf("0x%x[%x] ", tokens->operations[i].opcode, tokens->operations[i].repeats);
+			printf("%dda[%x] ", tokens->operations[i].opcode, tokens->operations[i].repeats);
 		}
 		puts("");
 		if (bytecode_exit) return 0;

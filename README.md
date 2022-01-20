@@ -24,11 +24,9 @@ A fully functional computer that only likes brainfuck.
 
 `}` ends the condition code block
 
-`~` flips the bits of the current cell (excluding sign)
-
 `%` sleeps for 100ms
 
-`*` clears the screen
+`*` clears the terminal
 
 `@` sets the current cell to 'a'
 
@@ -40,7 +38,7 @@ A fully functional computer that only likes brainfuck.
 
 - any characters other than these are ignored when a brainfuck program is reading your brainfuck code. have fun typing comments bozo
 
-- there are 30,000 cells in a brainfuck program, all of which are 0
+- there are `30,000` cells in a brainfuck program, all of which are 0
 
 - you start at cell 0
 
@@ -64,10 +62,9 @@ Multi-threading:
 
 - () creates multiple 'threads' (concurrency), with ! being the command to break out the current thread e.g.
 
-```bf
+```x86asm
 (%@.)@@.
-output:
-Aa
+output: Aa (the thread is delayed by ~100ms, while the main program is ran instantaneously)
 ```
 
 ## OPTIMIZATION LIST
@@ -100,7 +97,7 @@ Aa
 
 `LOP` - `[`
 
-`ELP` - ']`
+`ELP` - `]`
 
 `CHR` - `,`
 

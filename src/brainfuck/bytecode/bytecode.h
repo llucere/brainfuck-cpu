@@ -13,7 +13,6 @@ typedef enum op_code_t {
 	CHR,
 	PUT,
 
-	BFLP,
 	COND,
 	ECND,
 	DRAW,
@@ -37,7 +36,6 @@ char opcode_char_list[19] = {
 	',',
 	'.',
 
-	'~',
 	'{',
 	'}',
 	'#',
@@ -62,7 +60,6 @@ OpCodeSequence sequence_list[8] = {
 	{{LOP, SUB, ELP}, CLRS, 3},
 	{{LOP, ADD, ELP}, CLRS, 3},
 	{{SETA, SETA}, STDA, 2},
-	{{BFLP, BFLP}, SLP, 2},
 	{{ADD, SUB}, SLP, 2},
 	{{SUB, ADD}, SLP, 2},
 	{{COND, ECND}, SLP, 2},

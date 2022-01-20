@@ -98,9 +98,6 @@ int bf_interpreter(Interpreter* interpret) {
 					memory[cell] = mod(memory[cell] - data.repeats, UCHAR_MAX);
 				}
 				break;
-			case BFLP:
-				memory[cell] = -(~memory[cell]);
-				break;
 			case SLP:
 				slp(100*data.repeats);
 				break;
@@ -120,9 +117,6 @@ int bf_interpreter(Interpreter* interpret) {
 				bf_shl(&cell, data.repeats);
 				interpret->cell = cell;
 				break;
-			case COND:
-				if (memory[cell] != 0) pointer = loop_map[pointer];
-				break;
 			case LOP:
 				if (memory[cell] == 0) {
 					pointer = loop_map[pointer];
@@ -133,6 +127,9 @@ int bf_interpreter(Interpreter* interpret) {
 					pointer = loop_map[pointer];
 				}
 				
+				break;
+			case COND:
+				if (memory[cell] != 0) pointer = loop_map[pointer];
 				break;
 			case CHR:
 				if (data.repeats == 1) {
