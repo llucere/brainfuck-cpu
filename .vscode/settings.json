@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"bytecode.h": "c",
+		"brainfuck.h": "c",
+		"string.h": "c",
+		"stdio.h": "c",
+		"limits.h": "c",
+		"time.h": "c"
+	}
+}
