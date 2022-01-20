@@ -120,6 +120,9 @@ int bf_interpreter(Interpreter* interpret) {
 				bf_shl(&cell, data.repeats);
 				interpret->cell = cell;
 				break;
+			case COND:
+				if (memory[cell] != 0) pointer = loop_map[pointer];
+				break;
 			case LOP:
 				if (memory[cell] == 0) {
 					pointer = loop_map[pointer];
@@ -152,9 +155,6 @@ int bf_interpreter(Interpreter* interpret) {
 			case PUT:
 				fputchar(memory[cell]);
 				last_printed_char = memory[cell];
-				break;
-			case COND:
-				if (memory[cell] != 0) pointer = loop_map[pointer];
 				break;
 			case SETA:
 				memory[cell] = 'a';

@@ -22,7 +22,7 @@ Interpreter* bf_tokenize(char* program) {
 			op = bf_get_opcode_from_char(l_lexer.current_char);
 		}
 		if (i > l_lexer.end_pointer) break;
-		
+
 		i++;
 		l_lexer.current_char = l_lexer.program[i];
 
@@ -87,12 +87,6 @@ Interpreter* bf_tokenize(char* program) {
 	free(l_interpreter->operations);
 	l_interpreter->operations = operations_secondary_cpy;
 	l_interpreter->operations_size = operations_secondary_cpy_size;
-
-	/*printf("bytecode instructions: ");
-	for (int i = 0; i < l_interpreter->operations_size; i++) {
-		printf("0x%x%x ", l_interpreter->operations[i].opcode, l_interpreter->operations[i].repeats);
-	}
-	puts("");*/
 
 	return l_interpreter;
 }

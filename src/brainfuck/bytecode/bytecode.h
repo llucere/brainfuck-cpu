@@ -1,5 +1,8 @@
 #pragma once
 
+
+// opcodes and opcode_char_list must be ordered in the exact same way.
+
 typedef enum op_code_t {
 	ADD,
 	SUB,
