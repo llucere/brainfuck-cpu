@@ -14,24 +14,8 @@
 #endif
 
 int mod(int x, int m) {
-	// https://stackoverflow.com/a/16964329
+	// https://stackoverflow.com/a/16964329 but edited
 	return (x & m + m) & m;
-}
-
-void bf_shl(uint16_t* cell, int repeats) {
-	if (*cell - repeats < 0) {
-		bf_err("Out of boundaries (data pointer preceeded 0)");
-	} else {
-		*cell -= repeats;
-	}
-}
-
-void bf_shr(uint16_t* cell, int repeats) {
-	if (*cell + repeats > USHRT_MAX) {
-		bf_err("Out of boundaries (data pointer exceeded 2^16)");
-	} else {
-		*cell += repeats;
-	}
 }
 
 uint16_t* bf_optimize(Interpreter* interpret) {
@@ -110,23 +94,26 @@ int bf_interpreter(Interpreter* interpret) {
 				memory[cell] = 0;
 				break;
 			case SHR:
-				bf_shr(&cell, data.repeats);
+				if (cell + data.repeats > USHRT_MAX) {
+					bf_err("Out of boundaries (data pointer exceeded 2^16)");
+				} else {
+					cell += data.repeats;
+				}
 				interpret->cell = cell;
 				break;
 			case SHL:
-				bf_shl(&cell, data.repeats);
+				if (cell - data.repeats < 0) {
+					bf_err("Out of boundaries (data pointer preceeded 0)");
+				} else {
+					cell -= data.repeats;
+				}
 				interpret->cell = cell;
 				break;
 			case LOP:
-				if (memory[cell] == 0) {
-					pointer = loop_map[pointer];
-				}
+				if (memory[cell] == 0) pointer = loop_map[pointer];
 				break;
 			case ELP:
-				if (memory[cell] != 0) {
-					pointer = loop_map[pointer];
-				}
-				
+				if (memory[cell] != 0) pointer = loop_map[pointer];
 				break;
 			case COND:
 				if (memory[cell] != 0) pointer = loop_map[pointer];
