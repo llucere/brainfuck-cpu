@@ -20,17 +20,20 @@ int main(int argc, char* argv[]) {
 	if (bytecode_pass && bytecode_exit) bf_err("Only 1 bytecode flag may be used at a time");
 
 	printf("'%s'\n", read);
-	double st = 0;
-	bool using_benchmark = arr_find("-t", argv, argc) || arr_find("-tm", argv, argc) || arr_find("-time", argv, argc);
-	if (using_benchmark) st = (double)clock();
+
+	if (!bytecode_exit) {
+		double st = 0;
+		bool using_benchmark = arr_find("-t", argv, argc) || arr_find("-tm", argv, argc) || arr_find("-time", argv, argc);
+		if (using_benchmark) st = (double)clock();
 		bf_interpreter(tokens);
-	if (using_benchmark) printf("\nelapsed time: [%.32lf]\n", ((double)clock() - st) / (double)CLOCKS_PER_SEC);
+		if (using_benchmark) printf("\nelapsed time:[%lf]\n", ((double)clock() - st) / (double)CLOCKS_PER_SEC);
+	}
+	
 	if (bytecode_exit || bytecode_pass) {
 		for (int i = 0; i < tokens->operations_size; i++) {
 			printf("0x%x 0x%x ", tokens->operations[i].opcode, tokens->operations[i].repeats);
 		}
 		puts("");
-		if (bytecode_exit) return 0;
 	}
 
 	/*
