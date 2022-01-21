@@ -21,17 +21,25 @@ int main(int argc, char* argv[]) {
 		if (bytecode_pass && bytecode_exit) bf_err("Only 1 bytecode flag may be used at a time");
 		printf("bytecode instructions: ");
 		for (int i = 0; i < tokens->operations_size; i++) {
-			printf("%dda[%x] ", tokens->operations[i].opcode, tokens->operations[i].repeats);
+			printf("0x%x 0x%x ", tokens->operations[i].opcode, tokens->operations[i].repeats);
 		}
 		puts("");
 		if (bytecode_exit) return 0;
 	}
 	
-	float st = 0;
+	double st = 0;
 	bool using_benchmark = arr_find("-t", argv, argc) || arr_find("-tm", argv, argc) || arr_find("-time", argv, argc);
-	if (using_benchmark) st = (float)clock() / CLOCKS_PER_SEC;
-		char last_printed_char = bf_interpreter(tokens);
-	if (using_benchmark) if (last_printed_char != 10) printf("\n%lf\n", ((float)clock() / CLOCKS_PER_SEC) - st); else printf("%lf\n", ((float)clock() / CLOCKS_PER_SEC) - st);
+	if (using_benchmark) st = (double)clock();
+		bf_interpreter(tokens);
+	if (using_benchmark) printf("\nelapsed time: [%.32lf]\n", ((double)clock() - st) / (double)CLOCKS_PER_SEC);
+	
+	/*
+	double st = (double)clock();
+	for (int i = 0; i < 10000000; i++) {
+		bf_interpreter(tokens);
+	}
+	printf("\nelapsed time: %.20lf\n", ((double)clock() - st) / (double)CLOCKS_PER_SEC);
+	*/
 
 	if (!no_file) free(read);
 	return 0;

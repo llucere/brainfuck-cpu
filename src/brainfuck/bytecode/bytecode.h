@@ -55,14 +55,11 @@ typedef struct {
 	int arr_size;
 } OpCodeSequence;
 
-OpCodeSequence sequence_list[7] = {
+OpCodeSequence sequence_list[4] = {
 	{{LOP, ELP}, EXIT, 2},
 	{{LOP, SUB, ELP}, CLRS, 3},
 	{{LOP, ADD, ELP}, CLRS, 3},
 	{{SETA, SETA}, STDA, 2},
-	{{ADD, SUB}, SLP, 2},
-	{{SUB, ADD}, SLP, 2},
-	{{COND, ECND}, SLP, 2},
 };
 
 typedef struct byte_t {

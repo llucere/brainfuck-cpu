@@ -81,14 +81,6 @@ Labels:
 
 `@@` -> STDA
 
-`~~` -> SLP
-
-`+-` -> SLP
-
-`-+` -> SLP
-
-`{}` -> SLP
-
 ### OPTIMIZATION LIST DESCRIPTIONS
 
 `ADD` - `+`
