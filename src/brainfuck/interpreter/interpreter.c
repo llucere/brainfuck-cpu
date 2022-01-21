@@ -5,12 +5,10 @@
 
 	void slp(int s) {Sleep(s);}
 	void clear_screen() {printf("\e[1;1H\e[2J");} // printf("\e[1;1H\e[2J") is faster than system("cls")
-#else
-	#ifdef defined(__unix__) || defined(__linux__) || defined(__APPLE__)
-		#include <unistd.h>
-		void clear_screen() {printf("\e[1;1H\e[2J");}
-		void slp(int s) {usleep(s*1000);}
-	#endif
+#elif defined(__unix__) || defined(__linux__) || defined(__APPLE__)
+	#include <unistd.h>
+	void clear_screen() {printf("\e[1;1H\e[2J");}
+	void slp(int s) {usleep(s*1000);}
 #endif
 
 int mod(int x, int m) {
