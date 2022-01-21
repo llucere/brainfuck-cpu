@@ -27,26 +27,26 @@ typedef enum op_code_t {
 } OperationCode;
 
 char opcode_char_list[19] = {
-	'+',
-	'-',
-	'>',
-	'<',
-	'[',
-	']',
-	',',
-	'.',
+	'+',//ADD,
+	'-',//SUB,
+	'>',//SHR,
+	'<',//SHL,
+	'[',//LOP,
+	']',//ELP,
+	',',//CHR,
+	'.',//PUT,
 
-	'{',
-	'}',
-	'#',
-	'$',
-	'%',
-	'*',
-
-	' ',
-	'@',
-	' ',
-	'/'
+	'{',//COND,
+	'}',//ECND,
+	'#',//DRAW,
+	'$',//EXIT,
+	'%',//SLP,
+	'*',//CLS,
+	
+	' ',//CLRS,
+	'@',//SETA,
+	' ',//STDA,
+	'/'//LNFD
 };
 
 typedef struct {
@@ -55,7 +55,7 @@ typedef struct {
 	int arr_size;
 } OpCodeSequence;
 
-OpCodeSequence sequence_list[8] = {
+OpCodeSequence sequence_list[7] = {
 	{{LOP, ELP}, EXIT, 2},
 	{{LOP, SUB, ELP}, CLRS, 3},
 	{{LOP, ADD, ELP}, CLRS, 3},
@@ -73,5 +73,4 @@ typedef struct byte_t {
 typedef struct {
 	Operation* operations;
 	int operations_size, operations_max_size;
-	uint16_t cell;
 } Interpreter;

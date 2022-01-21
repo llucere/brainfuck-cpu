@@ -57,11 +57,12 @@ uint16_t* bf_optimize(Interpreter* interpret) {
 int bf_interpreter(Interpreter* interpret) {
 	__label__ _brainfuck_break;
 
-	register size_t pointer = 0, max_pointer = interpret->operations_size;
+	uint16_t* loop_map = bf_optimize(interpret);
 
 	uint8_t last_printed_char;
-	uint16_t* loop_map = bf_optimize(interpret);
-	uint16_t cell = interpret->cell, memory[USHRT_MAX];
+	register uint16_t cell = 0;
+	uint8_t memory[USHRT_MAX];
+	register int pointer = 0, max_pointer = interpret->operations_size;
 
 	Operation data;
 	while (pointer <= max_pointer) {
@@ -82,16 +83,13 @@ int bf_interpreter(Interpreter* interpret) {
 					memory[cell] = mod(memory[cell] - data.repeats, UCHAR_MAX);
 				}
 				break;
-			case SLP:
-				slp(100*data.repeats);
+			case SLP: slp(100*data.repeats);
 				break;
 			case DRAW:
 				break;
-			case CLS:
-				clear_screen();
+			case CLS: clear_screen();
 				break;
-			case CLRS:
-				memory[cell] = 0;
+			case CLRS: memory[cell] = 0;
 				break;
 			case SHR:
 				if (cell + data.repeats > USHRT_MAX) {
@@ -99,7 +97,6 @@ int bf_interpreter(Interpreter* interpret) {
 				} else {
 					cell += data.repeats;
 				}
-				interpret->cell = cell;
 				break;
 			case SHL:
 				if (cell - data.repeats < 0) {
@@ -107,16 +104,12 @@ int bf_interpreter(Interpreter* interpret) {
 				} else {
 					cell -= data.repeats;
 				}
-				interpret->cell = cell;
 				break;
-			case LOP:
-				if (memory[cell] == 0) pointer = loop_map[pointer];
+			case LOP: if (memory[cell] == 0) pointer = loop_map[pointer];
 				break;
-			case ELP:
-				if (memory[cell] != 0) pointer = loop_map[pointer];
+			case ELP: if (memory[cell] != 0) pointer = loop_map[pointer];
 				break;
-			case COND:
-				if (memory[cell] != 0) pointer = loop_map[pointer];
+			case COND: if (memory[cell] != 0) pointer = loop_map[pointer];
 				break;
 			case CHR:
 				if (data.repeats == 1) {
@@ -133,21 +126,16 @@ int bf_interpreter(Interpreter* interpret) {
 				}
 				
 				break;
-			case LNFD:
-				fputchar(10);
+			case LNFD: fputchar(10);
 				break;
-			case PUT:
-				fputchar(memory[cell]);
+			case PUT: fputchar(memory[cell]);
 				last_printed_char = memory[cell];
 				break;
-			case SETA:
-				memory[cell] = 'a';
+			case SETA: memory[cell] = 'a';
 				break;
-			case STDA:
-				memory[cell] = 'A';
+			case STDA: memory[cell] = 'A';
 				break;
-			case EXIT:
-				bfbreak;
+			case EXIT: bfbreak;
 			case ECND: break;
 		}
 

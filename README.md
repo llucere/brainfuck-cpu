@@ -1,6 +1,6 @@
 # brainfuck cpu
 
-A fully functional computer that only likes brainfuck.
+wip cpu, will support drawing and multithreading prob soon
 
 ## Brainfuck for goofy goobers
 
@@ -66,6 +66,10 @@ Multi-threading:
 (%@.)@@.
 output: Aa (the thread is delayed by ~100ms, while the main program is ran instantaneously)
 ```
+
+Labels:
+
+`:` to create a label, `;` to go to the last label, `;;` to go to the second last label, etc
 
 ## OPTIMIZATION LIST
 

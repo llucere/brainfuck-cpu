@@ -11,7 +11,8 @@ int main(int argc, char* argv[]) {
 		exit(1);
 	}
 
-	char* read =  (arr_find("-nf", argv, argc) || arr_find("-nofile", argv, argc)) ? argv[1]: ffullread(argv[1]);
+	bool no_file = arr_find("-nf", argv, argc) || arr_find("-nofile", argv, argc);
+	char* read =  (no_file) ? argv[1]: ffullread(argv[1]);
 	Interpreter* tokens = bf_tokenize(read);
 
 	bool bytecode_exit = arr_find("-bc", argv, argc) || arr_find("-bytecode", argv, argc);
@@ -31,8 +32,8 @@ int main(int argc, char* argv[]) {
 	if (using_benchmark) st = (float)clock() / CLOCKS_PER_SEC;
 		char last_printed_char = bf_interpreter(tokens);
 	if (using_benchmark) if (last_printed_char != 10) printf("\n%lf\n", ((float)clock() / CLOCKS_PER_SEC) - st); else printf("%lf\n", ((float)clock() / CLOCKS_PER_SEC) - st);
-	
-	free(read);
+
+	if (!no_file) free(read);
 	return 0;
 }
 
