@@ -107,8 +107,6 @@ Labels:
 
 `SLP` - `%`
 
-`BFLP` - `~`
-
 `CLS` - `*`
 
 `SETA` - `@`

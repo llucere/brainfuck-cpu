@@ -84,7 +84,7 @@ int bf_interpreter(Interpreter* interpret) {
 			case ELP:
 			case COND: if (memory[cell] != 0) pointer = loop_map[pointer];
 				break;
-			case PUT: fputchar(memory[cell]);
+			case PUT: for (int i = 0; i < data.repeats; i++) fputchar(memory[cell]);
 				break;
 			case SLP: slp(100*data.repeats);
 				break;
@@ -104,7 +104,7 @@ int bf_interpreter(Interpreter* interpret) {
 				}
 				
 				break;
-			case LNFD: fputchar(10);
+			case LNFD: for (int i = 0; i < data.repeats; i++) fputchar(10);
 				break;
 			case SETA: memory[cell] = 'a';
 				break;
