@@ -1,7 +1,2 @@
-gcc ../src/main.c -o bfcpu -O2
-
-#Clear-Host
-Write-Output "START:"
-Write-Output "-----------------------------------------------------"
-bfcpu ../examples/badword.bfc -bytecodepass -time
-Write-Output "-----------------------------------------------------"
+gcc src/main.c -o src/bfcpu -O2
+src/bfcpu tests/benchmark_code.bf -t -rep 10000000

@@ -1,6 +1,5 @@
 #pragma once
 
-
 // opcodes and opcode_char_list must be ordered in the exact same way.
 
 typedef enum op_code_t {
@@ -26,7 +25,8 @@ typedef enum op_code_t {
 	LNFD
 } OperationCode;
 
-char opcode_char_list[19] = {
+#define OPCODE_CHAR_LIST_SIZE 19
+char opcode_char_list[OPCODE_CHAR_LIST_SIZE] = {
 	'+',//ADD,
 	'-',//SUB,
 	'>',//SHR,

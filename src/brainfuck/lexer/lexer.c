@@ -76,8 +76,8 @@ Interpreter* bf_tokenize(char* program) {
 	
 	while (j < operations_cpy_size) {
 		OperationCode initial_op = operations_cpy[j].opcode;
-		int reps = 0;
-	
+
+		register int reps = 0;
 		while (operations_cpy[j].opcode == initial_op && j < operations_cpy_size) {
 			j++, reps++;
 		}
@@ -92,12 +92,10 @@ Interpreter* bf_tokenize(char* program) {
 }
 
 int bf_get_opcode_from_char(char character) {
-	int found = -1;
-	for (int j = 0; j < sizeof(opcode_char_list) / sizeof(opcode_char_list[0]); j++) {
+	for (int j = 0; j < OPCODE_CHAR_LIST_SIZE; j++) {
 		if (opcode_char_list[j] == character) {
-			found = j;
-			break;
+			return j;
 		}
 	}
-	return found;
+	return -1;
 }

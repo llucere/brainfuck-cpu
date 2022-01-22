@@ -2,6 +2,10 @@
 
 wip cpu, will support drawing and multithreading prob soon
 
+shoutout to [thatbirdguythatuknownot](https://github.com/thatbirdguythatuknownot) for helping me get the speed down from ~100ns - 120ns to ~82ns
+
+yes i micro-optimized
+
 ## Brainfuck for goofy goobers
 
 `+` add 1 to the current cell
