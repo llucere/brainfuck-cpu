@@ -37,8 +37,8 @@ int main(int argc, char* argv[]) {
 			char* intv = argv[rep];
 			int sum = 0;
 
-			while (*intv && '0' <= *intv <= '9') {
-				sum = (sum*10) + (*(intv++) - '0');
+			while (*intv && *intv >= '0' && *intv <= '9') {
+				sum = (sum * 10) + (*(intv++) - '0');
 			}
 			
 			if (*intv != '\0') {
