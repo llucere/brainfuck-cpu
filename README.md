@@ -2,13 +2,17 @@
 
 3/24/2022 - PROBABLY DISCONTINUED, i should remake a version thats pretty much assembly but brainfuck, that would be cool. features would probably include strings, macros, sub-arrays (arrays inside the giant memory tape), and some other cool features EXCEPT ARITHMETIC (ofc inc and dec). but yeah, this may be discontinued
 
+adding 'cpu' in the naming was kinda misleading
+
+---
+
 wip cpu, will support drawing and multithreading prob soon
 
 shoutout to [thatbirdguythatuknownot](https://github.com/thatbirdguythatuknownot) for helping me get the speed down from ~100ns - 120ns to ~82ns
 
 yes i micro-optimized
 
-## Brainfuck for goofy goobers
+## Brainfuck
 
 `+` add 1 to the current cell
 
